@@ -36,6 +36,8 @@ var fs=require('fs');
 const express=require('express');
 const hbs=require('hbs');
 var app=express();
+
+const port=process.env.PORT || 3000;
 app.set('view engine','hbs');
 hbs.registerPartials(__dirname+'/views/partials');
 
@@ -57,11 +59,7 @@ var now=new Date().toString();
     
     next();
 });
-app.use((req,res,next)=>{
-   res.render('sorry.hbs',{
-      sorry:'we will get back soon' 
-   }); 
-});
+
 app.get('/',(req,res)=>{
         res.render('home.hbs',{
         welcome:'welcome to my page'
@@ -75,6 +73,6 @@ app.get('/about',(req,res)=>{
         }
         )});
 
-app.listen(3000,()=>{
+app.listen(port,()=>{
     console.log('server is onnnnnnnn');
 })
